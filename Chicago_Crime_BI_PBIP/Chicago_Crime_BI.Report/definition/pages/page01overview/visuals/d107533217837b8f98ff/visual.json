@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "d107533217837b8f98ff",
+  "position": {
+    "x": 1012,
+    "y": 62,
+    "z": 5,
+    "height": 85,
+    "width": 236,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Crimes"
+                    }
+                  },
+                  "Property": "Battery & Assault Incidents"
+                }
+              },
+              "queryRef": "Crimes.Battery & Assault Incidents",
+              "nativeQueryRef": "Battery & Assault Incidents"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Battery + assault'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

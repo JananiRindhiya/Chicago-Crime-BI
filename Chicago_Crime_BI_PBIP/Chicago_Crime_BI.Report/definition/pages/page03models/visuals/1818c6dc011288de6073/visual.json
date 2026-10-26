@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "1818c6dc011288de6073",
+  "position": {
+    "x": 649.37065626459355,
+    "y": 279.74837238689122,
+    "z": 11,
+    "height": 248.1026289042112,
+    "width": 610.1299343460704,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Label"
+                }
+              },
+              "queryRef": "ModelComparison.Label",
+              "nativeQueryRef": "Label",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Accuracy Diff vs Best Baseline (pp)"
+                }
+              },
+              "queryRef": "ModelComparison.Accuracy Diff vs Best Baseline (pp)",
+              "nativeQueryRef": "Accuracy Diff vs Best Baseline (pp)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Balanced Acc Diff vs Best Baseline (pp)"
+                }
+              },
+              "queryRef": "ModelComparison.Balanced Acc Diff vs Best Baseline (pp)",
+              "nativeQueryRef": "Balanced Acc Diff vs Best Baseline (pp)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ModelComparison"
+                  }
+                },
+                "Property": "Accuracy Diff vs Best Baseline (pp)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Difference vs best baseline (percentage points)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

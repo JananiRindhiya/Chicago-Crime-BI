@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a886f5df855c9b2683bf",
+  "position": {
+    "x": 235.44433151113921,
+    "y": 135.44378210587041,
+    "z": 4,
+    "height": 122.78548471279841,
+    "width": 205.0644177677664,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Matrix Precision (Arrest)"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Matrix Precision (Arrest)",
+              "nativeQueryRef": "Matrix Precision (Arrest)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Precision (arrest)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "c6dabd9609c977299510",
+  "position": {
+    "x": 880,
+    "y": 228,
+    "z": 11,
+    "height": 480,
+    "width": 380,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "Beat"
+                }
+              },
+              "queryRef": "Predictions.Beat",
+              "nativeQueryRef": "Beat"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "BA Incidents"
+                }
+              },
+              "queryRef": "Predictions.BA Incidents",
+              "nativeQueryRef": "BA Incidents"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "BA Arrest Rate"
+                }
+              },
+              "queryRef": "Predictions.BA Arrest Rate",
+              "nativeQueryRef": "BA Arrest Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Predictions"
+                  }
+                },
+                "Property": "BA Incidents"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Beats ranked by incidents'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

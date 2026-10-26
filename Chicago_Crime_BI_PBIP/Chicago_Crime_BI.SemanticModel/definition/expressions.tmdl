@@ -1,0 +1,5 @@
+expression DataFolder = "J:\M.TECH\sem3\BIA & DSS\Major Project\powerbi_data" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
+	lineageTag: 6b1f2a50-3c2d-4a55-9d0e-0a1b2c3d4e5f
+
+	annotation PBI_ResultType = Text
+

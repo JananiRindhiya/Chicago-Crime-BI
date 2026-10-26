@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "b0d6b32c1611db9f083e",
+  "position": {
+    "x": 950,
+    "y": 62,
+    "z": 4,
+    "height": 85,
+    "width": 298,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "Predicted Arrest Rate"
+                }
+              },
+              "queryRef": "Predictions.Predicted Arrest Rate",
+              "nativeQueryRef": "Predicted Arrest Rate"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Model-predicted arrest rate'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

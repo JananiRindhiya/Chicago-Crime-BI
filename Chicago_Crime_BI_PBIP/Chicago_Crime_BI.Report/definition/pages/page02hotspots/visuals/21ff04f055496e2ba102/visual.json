@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "21ff04f055496e2ba102",
+  "position": {
+    "x": 20,
+    "y": 8,
+    "z": 0,
+    "height": 50,
+    "width": 1100,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Battery & Assault Hotspots (the paper's scope)",
+                    "textStyle": {
+                      "fontSize": "20pt",
+                      "color": "#1F4E79",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

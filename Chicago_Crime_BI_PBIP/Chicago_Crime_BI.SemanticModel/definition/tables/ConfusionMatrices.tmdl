@@ -1,0 +1,117 @@
+table ConfusionMatrices
+	lineageTag: 48af1c65-1ba2-4b59-b8d9-88f8726d29e4
+
+	measure 'Showing Model' = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE")
+		lineageTag: 7489c30b-b6e2-4a5e-8fb8-7bccd7154996
+
+	measure 'Matrix Count' = CALCULATE(SUM(ConfusionMatrices[Count]), ConfusionMatrices[Label] = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE"))
+		formatString: #,0
+		lineageTag: 96e09a10-c632-49d4-96ee-dde671e9b6d9
+
+	measure 'Matrix TP' = CALCULATE(SUM(ConfusionMatrices[Count]), ConfusionMatrices[Label] = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE"), ConfusionMatrices[Cell] = "TP")
+		formatString: #,0
+		lineageTag: 8f68f89c-b667-4138-a21e-6ddcb3805015
+
+	measure 'Matrix TN' = CALCULATE(SUM(ConfusionMatrices[Count]), ConfusionMatrices[Label] = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE"), ConfusionMatrices[Cell] = "TN")
+		formatString: #,0
+		lineageTag: 8294e001-53a6-4a78-8b94-ee1f1f000e8a
+
+	measure 'Matrix FP' = CALCULATE(SUM(ConfusionMatrices[Count]), ConfusionMatrices[Label] = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE"), ConfusionMatrices[Cell] = "FP")
+		formatString: #,0
+		lineageTag: ac761865-ac1a-4958-9fd7-95043707b99f
+
+	measure 'Matrix FN' = CALCULATE(SUM(ConfusionMatrices[Count]), ConfusionMatrices[Label] = SELECTEDVALUE(ConfusionMatrices[Label], "Random Forest | Extended | SMOTE"), ConfusionMatrices[Cell] = "FN")
+		formatString: #,0
+		lineageTag: 4c5b99f9-9cce-401e-a703-a270cfb7f4b4
+
+	measure 'Matrix Accuracy' = DIVIDE([Matrix TP] + [Matrix TN], [Matrix TP] + [Matrix TN] + [Matrix FP] + [Matrix FN])
+		formatString: 0.0%
+		lineageTag: f8297c6c-8e68-48fd-bf1f-3bbdc59333ae
+
+	measure 'Matrix Precision (Arrest)' = DIVIDE([Matrix TP], [Matrix TP] + [Matrix FP])
+		formatString: 0.0%
+		lineageTag: eb6f1aa4-6939-4951-8e3d-4a674da01f93
+
+	measure 'Matrix Recall (Arrest)' = DIVIDE([Matrix TP], [Matrix TP] + [Matrix FN])
+		formatString: 0.0%
+		lineageTag: 9aee920a-50be-4fd5-8098-78f54e02c9b6
+
+	column Model
+		dataType: string
+		lineageTag: 79c5ccc0-cb58-466c-b366-d263aac79be8
+		summarizeBy: none
+		sourceColumn: Model
+
+	column FeatureSet
+		dataType: string
+		lineageTag: a0ea3539-dde3-49ca-9f57-b78558586992
+		summarizeBy: none
+		sourceColumn: FeatureSet
+
+	column Training
+		dataType: string
+		lineageTag: bba30579-07a4-488c-9690-f84af9f4fb3e
+		summarizeBy: none
+		sourceColumn: Training
+
+	column Actual
+		dataType: int64
+		lineageTag: 0627cdca-3554-487a-a8aa-2144413e8582
+		summarizeBy: none
+		sourceColumn: Actual
+
+	column Predicted
+		dataType: int64
+		lineageTag: b1c21e5a-6ab0-4f46-ac26-00ecf38764b9
+		summarizeBy: none
+		sourceColumn: Predicted
+
+	column Count
+		dataType: int64
+		formatString: #,0
+		lineageTag: 08d94bc7-3c9b-4465-afb4-1326cffce041
+		summarizeBy: none
+		sourceColumn: Count
+
+	column Label
+		dataType: string
+		lineageTag: d7244dfc-55cb-4f23-be3c-8aabb6722005
+		summarizeBy: none
+		sourceColumn: Label
+
+	column Cell
+		dataType: string
+		lineageTag: 8a66ec2e-7697-48fe-8582-5bf1500f7b7f
+		summarizeBy: none
+		sourceColumn: Cell
+
+	column 'Actual Label'
+		dataType: string
+		lineageTag: 400c8dd8-9a55-4eb2-b5ba-49aa5fb7752c
+		summarizeBy: none
+		sourceColumn: Actual Label
+
+	column 'Predicted Label'
+		dataType: string
+		lineageTag: a7b79063-cee6-4d13-90cf-c59c22a155be
+		summarizeBy: none
+		sourceColumn: Predicted Label
+
+	partition ConfusionMatrices = m
+		mode: import
+		source =
+				let
+					Folder = Text.TrimEnd(Text.Replace(Text.Trim(DataFolder), """", ""), "\"),
+					Source = Csv.Document(File.Contents(Folder & "\confusion_matrices.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Selected = Table.SelectColumns(Promoted, {"Model", "FeatureSet", "Training", "Actual", "Predicted", "Count"}),
+					Typed = Table.TransformColumnTypes(Selected, {{"Model", type text}, {"FeatureSet", type text}, {"Training", type text}, {"Actual", Int64.Type}, {"Predicted", Int64.Type}, {"Count", Int64.Type}}, "en-US"),
+					AddLabel = Table.AddColumn(Typed, "Label", each [Model] & " | " & [FeatureSet] & " | " & [Training], type text),
+					AddCell = Table.AddColumn(AddLabel, "Cell", each if [Actual]=0 and [Predicted]=0 then "TN" else if [Actual]=0 then "FP" else if [Predicted]=0 then "FN" else "TP", type text),
+					AddAL = Table.AddColumn(AddCell, "Actual Label", each if [Actual]=1 then "Actual: Arrest" else "Actual: No arrest", type text),
+					AddPL = Table.AddColumn(AddAL, "Predicted Label", each if [Predicted]=1 then "Pred: Arrest" else "Pred: No arrest", type text)
+				in
+					AddPL
+
+	annotation PBI_ResultType = Table
+

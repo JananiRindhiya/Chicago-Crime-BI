@@ -1,0 +1,63 @@
+table FeatureImportance
+	lineageTag: 7775f6e7-37eb-459e-89f3-af6b5302f86e
+
+	measure 'RF Importance' = MAX(FeatureImportance[RF_Importance])
+		formatString: 0.000
+		lineageTag: 8e7eaee6-a501-44f4-9165-dd01d41d1044
+
+	measure 'Permutation Importance (AUC drop)' = MAX(FeatureImportance[Permutation_AUC_Drop])
+		formatString: 0.000
+		lineageTag: 83ac1dc0-2666-4700-a6cd-5dba30826525
+
+	measure 'Mutual Information' = MAX(FeatureImportance[MutualInfo])
+		formatString: 0.000
+		lineageTag: 0e8dbdad-0176-4bb3-8d3a-77d599411ea9
+
+	column Feature
+		dataType: string
+		lineageTag: 5d1d36fe-9a94-4658-a8a9-e3a8ce0b7216
+		summarizeBy: none
+		sourceColumn: Feature
+
+	column RF_Importance
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 9377b569-66cc-49ff-aa81-9f10b36097be
+		summarizeBy: none
+		sourceColumn: RF_Importance
+
+	column Permutation_AUC_Drop
+		dataType: double
+		formatString: 0.0000
+		lineageTag: c394d926-6fc3-425e-abaa-a6becaaefa66
+		summarizeBy: none
+		sourceColumn: Permutation_AUC_Drop
+
+	column MutualInfo
+		dataType: double
+		formatString: 0.0000
+		lineageTag: f057bf42-c05b-46e0-bc40-f8f51824bbbc
+		summarizeBy: none
+		sourceColumn: MutualInfo
+
+	column AUC_drop_when_removed
+		dataType: double
+		formatString: 0.0000
+		lineageTag: 595cb277-f2fc-405c-9d9d-0c62bc1e22eb
+		summarizeBy: none
+		sourceColumn: AUC_drop_when_removed
+
+	partition FeatureImportance = m
+		mode: import
+		source =
+				let
+					Folder = Text.TrimEnd(Text.Replace(Text.Trim(DataFolder), """", ""), "\"),
+					Source = Csv.Document(File.Contents(Folder & "\feature_importance.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Selected = Table.SelectColumns(Promoted, {"Feature", "RF_Importance", "Permutation_AUC_Drop", "MutualInfo", "AUC_drop_when_removed"}),
+					Typed = Table.TransformColumnTypes(Selected, {{"Feature", type text}, {"RF_Importance", type number}, {"Permutation_AUC_Drop", type number}, {"MutualInfo", type number}, {"AUC_drop_when_removed", type number}}, "en-US")
+				in
+					Typed
+
+	annotation PBI_ResultType = Table
+

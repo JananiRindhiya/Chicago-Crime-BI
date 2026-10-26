@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "f57712372da177336bf2",
+  "position": {
+    "x": 860,
+    "y": 538,
+    "z": 13,
+    "height": 170,
+    "width": 400,
+    "tabOrder": 13
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Reading this page: the test set is ~83% \"no arrest\", so raw accuracy rewards models that rarely predict an arrest. Compare balanced accuracy, arrest F1 and ROC-AUC. Paper (Chicago 2017-2019, different data): NB 59.78%, RIPPER 51.89%, C4.5 63.50%.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#34495E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

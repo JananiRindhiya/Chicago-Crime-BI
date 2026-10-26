@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "28a2d933b4e047e983fc",
+  "position": {
+    "x": 449.369557454056,
+    "y": 135.44378210587041,
+    "z": 5,
+    "height": 122.78548471279841,
+    "width": 205.0644177677664,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Matrix Recall (Arrest)"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Matrix Recall (Arrest)",
+              "nativeQueryRef": "Matrix Recall (Arrest)"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Recall (arrest)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

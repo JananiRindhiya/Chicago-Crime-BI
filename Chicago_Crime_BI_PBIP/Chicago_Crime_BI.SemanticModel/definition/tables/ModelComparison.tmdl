@@ -1,0 +1,174 @@
+table ModelComparison
+	lineageTag: 9f3d23e8-badd-47dc-a357-f88e8e64b1c3
+
+	measure 'Model Accuracy' = MAX(ModelComparison[Accuracy])
+		formatString: 0.0%
+		lineageTag: 9e806a57-a883-4f2f-ae31-62895ba64f2d
+
+	measure 'Balanced Accuracy' = MAX(ModelComparison[BalancedAccuracy])
+		formatString: 0.0%
+		lineageTag: 93aa7cc4-feb9-4880-9b5a-8535b8af8400
+
+	measure 'Arrest F1' = MAX(ModelComparison[F1_Arrest])
+		formatString: 0.000
+		lineageTag: 43065948-51c2-40ab-821a-ee7bc4338c62
+
+	measure 'Arrest Recall' = MAX(ModelComparison[Recall_Arrest])
+		formatString: 0.0%
+		lineageTag: 1fe60a0e-a259-4727-a3b4-44843640898b
+
+	measure 'Arrest Precision' = MAX(ModelComparison[Precision_Arrest])
+		formatString: 0.0%
+		lineageTag: cf63b8c6-19e1-44aa-be22-e0e87c68b7e3
+
+	measure 'ROC AUC' = MAX(ModelComparison[ROC_AUC])
+		formatString: 0.000
+		lineageTag: 83ad3bc8-39c2-47c9-8f1a-34a5ba8ed592
+
+	measure 'Best Baseline Accuracy' = CALCULATE(MAX(ModelComparison[Accuracy]), REMOVEFILTERS(ModelComparison), ModelComparison[Group] = "Baseline (paper)", ModelComparison[Training] = "SMOTE")
+		formatString: 0.0%
+		lineageTag: af3c48b7-b5bc-4a84-97da-c9fd228b7e47
+
+	measure 'Best Ensemble Accuracy' = CALCULATE(MAX(ModelComparison[Accuracy]), REMOVEFILTERS(ModelComparison), ModelComparison[Group] = "Proposed ensemble", ModelComparison[Training] = "SMOTE")
+		formatString: 0.0%
+		lineageTag: ed34d547-2a2a-418e-913f-42f5ca88e100
+
+	measure 'Best Baseline Balanced Accuracy' = CALCULATE(MAX(ModelComparison[BalancedAccuracy]), REMOVEFILTERS(ModelComparison), ModelComparison[Group] = "Baseline (paper)", ModelComparison[Training] = "SMOTE")
+		formatString: 0.0%
+		lineageTag: 4736562e-6528-42eb-bbfc-6d31aadc7593
+
+	measure 'Best Ensemble Balanced Accuracy' = CALCULATE(MAX(ModelComparison[BalancedAccuracy]), REMOVEFILTERS(ModelComparison), ModelComparison[Group] = "Proposed ensemble", ModelComparison[Training] = "SMOTE")
+		formatString: 0.0%
+		lineageTag: e435bbb3-9815-4fac-8c7c-5fc8835f942f
+
+	measure 'Accuracy Gain (pp)' = ([Best Ensemble Accuracy] - [Best Baseline Accuracy]) * 100
+		formatString: +0.0;-0.0;0.0
+		lineageTag: f79241be-e0af-4dc4-8b5c-8f1c1f30b83d
+
+	measure 'Balanced Accuracy Gain (pp)' = ([Best Ensemble Balanced Accuracy] - [Best Baseline Balanced Accuracy]) * 100
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 2ef9aabe-4caa-425b-adb0-8add1c380efb
+
+	measure 'Accuracy Diff vs Best Baseline (pp)' = ([Model Accuracy] - [Best Baseline Accuracy]) * 100
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 8a6e094a-134f-4a51-b00a-9e18e392a8b7
+
+	measure 'Balanced Acc Diff vs Best Baseline (pp)' = ([Balanced Accuracy] - [Best Baseline Balanced Accuracy]) * 100
+		formatString: +0.0;-0.0;0.0
+		lineageTag: 7a45e97e-70b0-40d3-a99d-70d233cf4014
+
+	column Model
+		dataType: string
+		lineageTag: 3b57a560-cb7b-4235-927c-8c91ba70def1
+		summarizeBy: none
+		sourceColumn: Model
+
+	column Group
+		dataType: string
+		lineageTag: 93662657-8d04-435f-b0fb-a0334310df94
+		summarizeBy: none
+		sourceColumn: Group
+
+	column FeatureSet
+		dataType: string
+		lineageTag: 26aaceec-977c-4109-891b-87d651406ab8
+		summarizeBy: none
+		sourceColumn: FeatureSet
+
+	column Training
+		dataType: string
+		lineageTag: bb20423a-92b3-4e3a-b964-c8319948eed3
+		summarizeBy: none
+		sourceColumn: Training
+
+	column Accuracy
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 61e8181e-1c80-4412-b4ee-ffc5926f759c
+		summarizeBy: none
+		sourceColumn: Accuracy
+
+	column BalancedAccuracy
+		dataType: double
+		formatString: 0.0%
+		lineageTag: ed33a584-304f-4121-8922-a90e8c7e085a
+		summarizeBy: none
+		sourceColumn: BalancedAccuracy
+
+	column Precision_w
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 9a290bbc-b418-426d-b3d1-4fbe7a2930fb
+		summarizeBy: none
+		sourceColumn: Precision_w
+
+	column Recall_w
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 3a36effe-435c-44b8-8fea-b5a3e5953a60
+		summarizeBy: none
+		sourceColumn: Recall_w
+
+	column F1_w
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 8498423c-c33b-4687-a57c-79100b025f96
+		summarizeBy: none
+		sourceColumn: F1_w
+
+	column Precision_Arrest
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 64ee9095-ce1f-4fa7-9755-48ebcc0ad372
+		summarizeBy: none
+		sourceColumn: Precision_Arrest
+
+	column Recall_Arrest
+		dataType: double
+		formatString: 0.0%
+		lineageTag: 6d7167c4-66e1-4a0f-b99a-2ced0baf500a
+		summarizeBy: none
+		sourceColumn: Recall_Arrest
+
+	column F1_Arrest
+		dataType: double
+		formatString: 0.0%
+		lineageTag: dd18f231-7dda-42cb-a2e9-068e91cbfa16
+		summarizeBy: none
+		sourceColumn: F1_Arrest
+
+	column ROC_AUC
+		dataType: double
+		formatString: 0.000
+		lineageTag: 6a018042-b325-49f3-a495-d4b0939f66ee
+		summarizeBy: none
+		sourceColumn: ROC_AUC
+
+	column PR_AUC
+		dataType: double
+		formatString: 0.000
+		lineageTag: b7f6fbec-039e-49dd-8956-2fa4d2d401a4
+		summarizeBy: none
+		sourceColumn: PR_AUC
+
+	column Label
+		dataType: string
+		lineageTag: 8755e539-5e53-40bb-a4a8-291356f906cd
+		summarizeBy: none
+		sourceColumn: Label
+
+	partition ModelComparison = m
+		mode: import
+		source =
+				let
+					Folder = Text.TrimEnd(Text.Replace(Text.Trim(DataFolder), """", ""), "\"),
+					Source = Csv.Document(File.Contents(Folder & "\model_comparison.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Selected = Table.SelectColumns(Promoted, {"Model", "Group", "FeatureSet", "Training", "Accuracy", "BalancedAccuracy", "Precision_w", "Recall_w", "F1_w", "Precision_Arrest", "Recall_Arrest", "F1_Arrest", "ROC_AUC", "PR_AUC"}),
+					Typed = Table.TransformColumnTypes(Selected, {{"Model", type text}, {"Group", type text}, {"FeatureSet", type text}, {"Training", type text}, {"Accuracy", type number}, {"BalancedAccuracy", type number}, {"Precision_w", type number}, {"Recall_w", type number}, {"F1_w", type number}, {"Precision_Arrest", type number}, {"Recall_Arrest", type number}, {"F1_Arrest", type number}, {"ROC_AUC", type number}, {"PR_AUC", type number}}, "en-US"),
+					AddLabel = Table.AddColumn(Typed, "Label", each [Model] & " | " & [FeatureSet] & " | " & [Training], type text)
+				in
+					AddLabel
+
+	annotation PBI_ResultType = Table
+

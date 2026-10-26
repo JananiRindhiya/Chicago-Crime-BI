@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "66d52f7dca3dcdb7ac31",
+  "position": {
+    "x": 330,
+    "y": 62,
+    "z": 2,
+    "height": 85,
+    "width": 298,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "BA Arrests"
+                }
+              },
+              "queryRef": "Predictions.BA Arrests",
+              "nativeQueryRef": "BA Arrests"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arrests'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

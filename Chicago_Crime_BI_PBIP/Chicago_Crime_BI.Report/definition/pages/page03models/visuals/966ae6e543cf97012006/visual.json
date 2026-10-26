@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "966ae6e543cf97012006",
+  "position": {
+    "x": 1055,
+    "y": 62,
+    "z": 6,
+    "height": 85,
+    "width": 198,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Balanced Accuracy Gain (pp)"
+                }
+              },
+              "queryRef": "ModelComparison.Balanced Accuracy Gain (pp)",
+              "nativeQueryRef": "Balanced Accuracy Gain (pp)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Balanced acc. gain (pp)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

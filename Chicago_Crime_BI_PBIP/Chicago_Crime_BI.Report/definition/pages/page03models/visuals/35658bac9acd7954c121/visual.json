@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "35658bac9acd7954c121",
+  "position": {
+    "x": 227,
+    "y": 62,
+    "z": 2,
+    "height": 85,
+    "width": 198,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Best Ensemble Accuracy"
+                }
+              },
+              "queryRef": "ModelComparison.Best Ensemble Accuracy",
+              "nativeQueryRef": "Best Ensemble Accuracy"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Best ensemble accuracy'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

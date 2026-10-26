@@ -1,0 +1,162 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "83eba7a1baa123e681a3",
+  "position": {
+    "x": 20,
+    "y": 538,
+    "z": 12,
+    "height": 170,
+    "width": 830,
+    "tabOrder": 12
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Label"
+                }
+              },
+              "queryRef": "ModelComparison.Label",
+              "nativeQueryRef": "Label"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Model Accuracy"
+                }
+              },
+              "queryRef": "ModelComparison.Model Accuracy",
+              "nativeQueryRef": "Model Accuracy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Balanced Accuracy"
+                }
+              },
+              "queryRef": "ModelComparison.Balanced Accuracy",
+              "nativeQueryRef": "Balanced Accuracy"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Arrest Precision"
+                }
+              },
+              "queryRef": "ModelComparison.Arrest Precision",
+              "nativeQueryRef": "Arrest Precision"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Arrest Recall"
+                }
+              },
+              "queryRef": "ModelComparison.Arrest Recall",
+              "nativeQueryRef": "Arrest Recall"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Arrest F1"
+                }
+              },
+              "queryRef": "ModelComparison.Arrest F1",
+              "nativeQueryRef": "Arrest F1"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "ROC AUC"
+                }
+              },
+              "queryRef": "ModelComparison.ROC AUC",
+              "nativeQueryRef": "ROC AUC"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ModelComparison"
+                  }
+                },
+                "Property": "Balanced Accuracy"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'All model metrics (test set)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+# Power BI local/cache files
+**/.pbi/
+*.pbi-tools*
+
+# Python/Jupyter
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secrets/local configuration
+.env
+*.env

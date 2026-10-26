@@ -1,0 +1,147 @@
+table Crimes
+	lineageTag: c08f57e2-636e-43dd-ad54-e1504bbcf3cb
+
+	measure 'Total Incidents' = COUNTROWS(Crimes)
+		formatString: #,0
+		lineageTag: c58d7b3d-f968-472d-a949-8d7b40e0631a
+
+	measure Arrests = CALCULATE(COUNTROWS(Crimes), Crimes[Arrest] = 1)
+		formatString: #,0
+		lineageTag: 781ae9fa-cac5-4b1a-8a35-7e73e90cedaf
+
+	measure 'Arrest Rate' = DIVIDE([Arrests], [Total Incidents])
+		formatString: 0.0%
+		lineageTag: 83acd117-ec7c-4643-9260-269793a11665
+
+	measure 'Domestic Share' = DIVIDE(CALCULATE(COUNTROWS(Crimes), Crimes[Domestic] = 1), [Total Incidents])
+		formatString: 0.0%
+		lineageTag: 9df5cc89-26d9-4d7e-83cc-6619f5671826
+
+	measure 'Battery & Assault Incidents' = CALCULATE(COUNTROWS(Crimes), Crimes[Primary Type] IN {"BATTERY", "ASSAULT"})
+		formatString: #,0
+		lineageTag: 641db846-4518-4b5a-805c-2c6b8b5f6bc6
+
+	column ID
+		dataType: int64
+		lineageTag: a355ad6a-f7f0-4492-944d-9d560e13a14b
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Primary Type'
+		dataType: string
+		lineageTag: 00152421-5166-40ae-925e-323f7abc06e7
+		summarizeBy: none
+		sourceColumn: Primary Type
+
+	column DescGroup
+		dataType: string
+		lineageTag: 02af5c33-fc32-422f-978e-facd14256a23
+		summarizeBy: none
+		sourceColumn: DescGroup
+
+	column Arrest
+		dataType: int64
+		lineageTag: 64fd74ea-47fb-4ec2-a848-5f510e953e21
+		summarizeBy: none
+		sourceColumn: Arrest
+
+	column Domestic
+		dataType: int64
+		lineageTag: e7b86593-ffc3-4c7b-9813-d85238a0b2a1
+		summarizeBy: none
+		sourceColumn: Domestic
+
+	column Beat
+		dataType: int64
+		formatString: 0
+		lineageTag: 72aa06c6-12f0-4cca-96d4-e9cf5bc08cba
+		summarizeBy: none
+		sourceColumn: Beat
+
+	column District
+		dataType: int64
+		formatString: 0
+		lineageTag: 790b2871-7e37-4a42-95ae-632a9cb017df
+		summarizeBy: none
+		sourceColumn: District
+
+	column 'Community Area'
+		dataType: int64
+		formatString: 0
+		lineageTag: 74c28c33-58bd-45c8-8d8a-cbf86b194638
+		summarizeBy: none
+		sourceColumn: Community Area
+
+	column Latitude
+		dataType: double
+		lineageTag: 76b21774-6074-4898-a925-fea9450121ae
+		summarizeBy: none
+		sourceColumn: Latitude
+
+	column Longitude
+		dataType: double
+		lineageTag: a223a4ec-6735-4084-9253-47502aef3105
+		summarizeBy: none
+		sourceColumn: Longitude
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: 835e1853-e0bf-4808-a7d2-f662288e03ab
+		summarizeBy: none
+		sourceColumn: Hour
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 4332a810-3b6b-4087-b6c3-3e11befd07a9
+		summarizeBy: none
+		sourceColumn: Month
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: 3a119bef-105e-4d06-a3b5-539099fa9378
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+		sortByColumn: DayNum
+
+	column Timeframe
+		dataType: string
+		lineageTag: 1aecf406-4400-425b-baa2-07191ef342a9
+		summarizeBy: none
+		sourceColumn: Timeframe
+
+	column YearMonth
+		dataType: string
+		lineageTag: 625d4e7f-ce88-42d9-8c6e-d388b1235736
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+	column Date
+		dataType: dateTime
+		lineageTag: 4d603681-82ee-431e-9f40-2403b61be796
+		summarizeBy: none
+		sourceColumn: Date
+
+	column DayNum
+		dataType: int64
+		formatString: 0
+		lineageTag: c328de7a-d190-4c3f-be2f-b164215682da
+		summarizeBy: none
+		sourceColumn: DayNum
+
+	partition Crimes = m
+		mode: import
+		source =
+				let
+					Folder = Text.TrimEnd(Text.Replace(Text.Trim(DataFolder), """", ""), "\"),
+					Source = Csv.Document(File.Contents(Folder & "\crime_cleaned.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Selected = Table.SelectColumns(Promoted, {"ID", "Primary Type", "DescGroup", "Arrest", "Domestic", "Beat", "District", "Community Area", "Latitude", "Longitude", "Hour", "Month", "DayOfWeek", "Timeframe", "YearMonth", "Date"}),
+					Typed = Table.TransformColumnTypes(Selected, {{"ID", Int64.Type}, {"Primary Type", type text}, {"DescGroup", type text}, {"Arrest", Int64.Type}, {"Domestic", Int64.Type}, {"Beat", Int64.Type}, {"District", Int64.Type}, {"Community Area", Int64.Type}, {"Latitude", type number}, {"Longitude", type number}, {"Hour", Int64.Type}, {"Month", Int64.Type}, {"DayOfWeek", type text}, {"Timeframe", type text}, {"YearMonth", type text}, {"Date", type datetime}}, "en-US"),
+					AddDay = Table.AddColumn(Typed, "DayNum", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type)
+				in
+					AddDay
+
+	annotation PBI_ResultType = Table
+

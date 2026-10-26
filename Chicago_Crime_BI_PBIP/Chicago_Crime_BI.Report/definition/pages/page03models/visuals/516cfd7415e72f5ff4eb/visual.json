@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "516cfd7415e72f5ff4eb",
+  "position": {
+    "x": 434,
+    "y": 62,
+    "z": 3,
+    "height": 85,
+    "width": 198,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Accuracy Gain (pp)"
+                }
+              },
+              "queryRef": "ModelComparison.Accuracy Gain (pp)",
+              "nativeQueryRef": "Accuracy Gain (pp)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Accuracy gain (pp)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

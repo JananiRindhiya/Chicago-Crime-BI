@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "6a0bd60dcd8e0cf8fe41",
+  "position": {
+    "x": 848.105925335824,
+    "y": 32.9115732219872,
+    "z": 5,
+    "height": 113.924676537648,
+    "width": 197.46943933192321,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ModelComparison"
+                    }
+                  },
+                  "Property": "Best Ensemble Balanced Accuracy"
+                }
+              },
+              "queryRef": "ModelComparison.Best Ensemble Balanced Accuracy",
+              "nativeQueryRef": "Best Ensemble Balanced Accuracy"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Best ensemble balanced acc.'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

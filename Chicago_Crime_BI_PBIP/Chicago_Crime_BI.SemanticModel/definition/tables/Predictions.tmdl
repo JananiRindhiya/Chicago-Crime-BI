@@ -1,0 +1,226 @@
+table Predictions
+	lineageTag: 5279311b-b19e-4b8c-8c0e-e0d812bb1dc3
+
+	measure 'BA Incidents' = COUNTROWS(Predictions)
+		formatString: #,0
+		lineageTag: a467a420-b8e4-4cc9-baf1-b7b3e499d4f0
+
+	measure 'BA Arrests' = CALCULATE(COUNTROWS(Predictions), Predictions[Actual_Arrest] = 1)
+		formatString: #,0
+		lineageTag: 45890166-8f18-4881-a9eb-9b29049909b0
+
+	measure 'BA Arrest Rate' = DIVIDE([BA Arrests], [BA Incidents])
+		formatString: 0.0%
+		lineageTag: ebba3797-020b-444d-86cd-91bf263ac2e0
+
+	measure 'Predicted Arrest Rate' = DIVIDE(CALCULATE(COUNTROWS(Predictions), Predictions[Predicted_Arrest] = 1), [BA Incidents])
+		formatString: 0.0%
+		lineageTag: 0f243f81-df88-48c4-ae75-dbf36dbf3093
+
+	measure 'Avg Arrest Probability' = AVERAGE(Predictions[Arrest_Probability])
+		formatString: 0.0%
+		lineageTag: a872ce5c-79ab-4369-87b6-0b67d8e1767d
+
+	measure 'Avg Latitude' = AVERAGE(Predictions[Latitude])
+		formatString: 0.0000
+		lineageTag: d416f509-d857-49d1-a106-89caf921182e
+
+	measure 'Avg Longitude' = AVERAGE(Predictions[Longitude])
+		formatString: 0.0000
+		lineageTag: 6b8b1346-88b2-430b-98c1-798c0a7c1cc0
+
+	measure 'Test Accuracy' = CALCULATE(AVERAGE(Predictions[Correct]), Predictions[Split] = "Test")
+		formatString: 0.0%
+		lineageTag: 616faf79-67bb-4412-85f1-6b54e5c7382e
+
+	measure 'Train Accuracy' = CALCULATE(AVERAGE(Predictions[Correct]), Predictions[Split] = "Train")
+		formatString: 0.0%
+		lineageTag: 08f42809-db73-4354-921c-8ae7d0c8bd05
+
+	measure 'Test TP' = CALCULATE(COUNTROWS(Predictions), Predictions[Split] = "Test", Predictions[Outcome] = "True Positive")
+		formatString: #,0
+		lineageTag: 96b1f762-83be-4dfa-af1f-e88c7f4b2029
+
+	measure 'Test FP' = CALCULATE(COUNTROWS(Predictions), Predictions[Split] = "Test", Predictions[Outcome] = "False Positive")
+		formatString: #,0
+		lineageTag: 1e4a7678-9831-4444-a0e9-7582563c3426
+
+	measure 'Test FN' = CALCULATE(COUNTROWS(Predictions), Predictions[Split] = "Test", Predictions[Outcome] = "False Negative")
+		formatString: #,0
+		lineageTag: 71680cb4-dbe7-486d-8951-d8a7335e055a
+
+	measure 'Test Precision (Arrest)' = DIVIDE([Test TP], [Test TP] + [Test FP])
+		formatString: 0.0%
+		lineageTag: 0c1298a9-e71b-44e1-a522-2f6e474aa67d
+
+	measure 'Test Recall (Arrest)' = DIVIDE([Test TP], [Test TP] + [Test FN])
+		formatString: 0.0%
+		lineageTag: da623b8a-9c79-4d84-b722-4b05bac9a210
+
+	measure 'Test Incidents' = CALCULATE(COUNTROWS(Predictions), Predictions[Split] = "Test")
+		formatString: #,0
+		lineageTag: a61d3561-bd85-40bb-9d87-515e1de1c6c7
+
+	column ID
+		dataType: int64
+		lineageTag: 7e161f2d-c290-4b9f-bb75-caa0d94eec21
+		summarizeBy: none
+		sourceColumn: ID
+
+	column 'Primary Type'
+		dataType: string
+		lineageTag: 142ab16e-6fc6-4241-8ed1-59e480f75d79
+		summarizeBy: none
+		sourceColumn: Primary Type
+
+	column DescGroup
+		dataType: string
+		lineageTag: 42cf491e-050b-49c9-9422-9f89478b0860
+		summarizeBy: none
+		sourceColumn: DescGroup
+
+	column District
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ba61623-8fb0-48f9-9955-d5ae4e682e0b
+		summarizeBy: none
+		sourceColumn: District
+
+	column Beat
+		dataType: int64
+		formatString: 0
+		lineageTag: 6f0a7a0a-4f7b-4a1c-b8db-a0d5acc5d3b7
+		summarizeBy: none
+		sourceColumn: Beat
+
+	column 'Community Area'
+		dataType: int64
+		formatString: 0
+		lineageTag: cdf6b47a-375e-44ea-bdb0-874213e8e23b
+		summarizeBy: none
+		sourceColumn: Community Area
+
+	column Latitude
+		dataType: double
+		lineageTag: aed98d9d-13ec-462a-af78-0443eaa005ce
+		summarizeBy: none
+		sourceColumn: Latitude
+
+	column Longitude
+		dataType: double
+		lineageTag: 4901188b-5055-457a-8e16-b0c6979694b4
+		summarizeBy: none
+		sourceColumn: Longitude
+
+	column Hour
+		dataType: int64
+		formatString: 0
+		lineageTag: c5ae133e-60ad-4e9d-a252-30239bb0872a
+		summarizeBy: none
+		sourceColumn: Hour
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: df255b4a-d05f-49de-b253-f13a3af7f672
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+		sortByColumn: DayNum
+
+	column Timeframe
+		dataType: string
+		lineageTag: 9bbd8e48-5894-429f-a2f0-2968cfff6d55
+		summarizeBy: none
+		sourceColumn: Timeframe
+
+	column Domestic
+		dataType: int64
+		lineageTag: c8183d3c-541b-481e-8cd2-221d6e9210b0
+		summarizeBy: none
+		sourceColumn: Domestic
+
+	column Actual_Arrest
+		dataType: int64
+		lineageTag: 1c57457d-c1e5-4d67-902f-d43ac58f8461
+		summarizeBy: none
+		sourceColumn: Actual_Arrest
+
+	column Predicted_Arrest
+		dataType: int64
+		lineageTag: 57bfa854-866d-4007-95bb-588907dac73d
+		summarizeBy: none
+		sourceColumn: Predicted_Arrest
+
+	column Arrest_Probability
+		dataType: double
+		formatString: 0.000
+		lineageTag: a397ac95-a7c9-4326-835a-e17ad2f4e3d9
+		summarizeBy: none
+		sourceColumn: Arrest_Probability
+
+	column Correct
+		dataType: int64
+		lineageTag: 4e9189c9-04a9-480e-8675-cee6d7d92754
+		summarizeBy: none
+		sourceColumn: Correct
+
+	column Split
+		dataType: string
+		lineageTag: 44d9d6f3-72c6-44a2-bedd-f55be762df26
+		summarizeBy: none
+		sourceColumn: Split
+
+	column Model
+		dataType: string
+		lineageTag: d2f987da-9d0d-4a40-a684-9bd3a12eb2fc
+		summarizeBy: none
+		sourceColumn: Model
+
+	column Date
+		dataType: dateTime
+		lineageTag: bb084edf-da0e-4c0c-9f60-f17d3a93f117
+		summarizeBy: none
+		sourceColumn: Date
+
+	column Outcome
+		dataType: string
+		lineageTag: 5dc5eb39-4f9f-472b-aef8-e37f74bf281c
+		summarizeBy: none
+		sourceColumn: Outcome
+
+	column 'Actual Label'
+		dataType: string
+		lineageTag: 7ea066c2-96df-44b2-a3ca-bcfe483526f7
+		summarizeBy: none
+		sourceColumn: Actual Label
+
+	column 'Predicted Label'
+		dataType: string
+		lineageTag: c9f7c24f-e606-49a8-a9e7-339dc8a82131
+		summarizeBy: none
+		sourceColumn: Predicted Label
+
+	column DayNum
+		dataType: int64
+		formatString: 0
+		lineageTag: a44b396c-0c1b-4717-b8f8-9214d72069be
+		summarizeBy: none
+		sourceColumn: DayNum
+
+	partition Predictions = m
+		mode: import
+		source =
+				let
+					Folder = Text.TrimEnd(Text.Replace(Text.Trim(DataFolder), """", ""), "\"),
+					Source = Csv.Document(File.Contents(Folder & "\crime_predictions.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+					Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+					Selected = Table.SelectColumns(Promoted, {"ID", "Primary Type", "DescGroup", "District", "Beat", "Community Area", "Latitude", "Longitude", "Hour", "DayOfWeek", "Timeframe", "Domestic", "Actual_Arrest", "Predicted_Arrest", "Arrest_Probability", "Correct", "Split", "Model", "Date"}),
+					Typed = Table.TransformColumnTypes(Selected, {{"ID", Int64.Type}, {"Primary Type", type text}, {"DescGroup", type text}, {"District", Int64.Type}, {"Beat", Int64.Type}, {"Community Area", Int64.Type}, {"Latitude", type number}, {"Longitude", type number}, {"Hour", Int64.Type}, {"DayOfWeek", type text}, {"Timeframe", type text}, {"Domestic", Int64.Type}, {"Actual_Arrest", Int64.Type}, {"Predicted_Arrest", Int64.Type}, {"Arrest_Probability", type number}, {"Correct", Int64.Type}, {"Split", type text}, {"Model", type text}, {"Date", type datetime}}, "en-US"),
+					AddOutcome = Table.AddColumn(Typed, "Outcome", each if [Actual_Arrest]=1 and [Predicted_Arrest]=1 then "True Positive" else if [Actual_Arrest]=0 and [Predicted_Arrest]=1 then "False Positive" else if [Actual_Arrest]=1 then "False Negative" else "True Negative", type text),
+					AddActual = Table.AddColumn(AddOutcome, "Actual Label", each if [Actual_Arrest]=1 then "Arrest" else "No arrest", type text),
+					AddPred = Table.AddColumn(AddActual, "Predicted Label", each if [Predicted_Arrest]=1 then "Arrest" else "No arrest", type text),
+					AddDay = Table.AddColumn(AddPred, "DayNum", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type)
+				in
+					AddDay
+
+	annotation PBI_ResultType = Table
+

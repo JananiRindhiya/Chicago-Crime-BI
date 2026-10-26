@@ -1,0 +1,120 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "adf913df7001b7bf9ab2",
+  "position": {
+    "x": 740,
+    "y": 497,
+    "z": 11,
+    "height": 211,
+    "width": 520,
+    "tabOrder": 11
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "Beat"
+                }
+              },
+              "queryRef": "Predictions.Beat",
+              "nativeQueryRef": "Beat"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "DescGroup"
+                }
+              },
+              "queryRef": "Predictions.DescGroup",
+              "nativeQueryRef": "DescGroup"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "Avg Arrest Probability"
+                }
+              },
+              "queryRef": "Predictions.Avg Arrest Probability",
+              "nativeQueryRef": "Avg Arrest Probability"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "BA Incidents"
+                }
+              },
+              "queryRef": "Predictions.BA Incidents",
+              "nativeQueryRef": "BA Incidents"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Predictions"
+                  }
+                },
+                "Property": "Avg Arrest Probability"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Predicted arrest probability by beat and offence type'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

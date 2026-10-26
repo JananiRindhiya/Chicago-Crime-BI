@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "ae42fcc429ece8b831fe",
+  "position": {
+    "x": 20.2532758289152,
+    "y": 135.44378210587041,
+    "z": 3,
+    "height": 122.78548471279841,
+    "width": 205.0644177677664,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Matrix Accuracy"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Matrix Accuracy",
+              "nativeQueryRef": "Matrix Accuracy"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Accuracy'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

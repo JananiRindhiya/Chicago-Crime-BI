@@ -1,0 +1,37 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "60ac166ac56a4a5b29da",
+  "position": {
+    "x": 20,
+    "y": 565,
+    "z": 12,
+    "height": 143,
+    "width": 300,
+    "tabOrder": 12
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Train accuracy far above test accuracy signals overfitting. Only Split = Test rows are out-of-sample.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#34495E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

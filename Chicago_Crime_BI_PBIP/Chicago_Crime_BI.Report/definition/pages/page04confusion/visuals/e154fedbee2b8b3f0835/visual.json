@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "e154fedbee2b8b3f0835",
+  "position": {
+    "x": 20.2532758289152,
+    "y": 368.35645413839518,
+    "z": 6,
+    "height": 141.77293080240639,
+    "width": 351.90066752740159,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Predicted Label"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Predicted Label",
+              "nativeQueryRef": "Predicted Label",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Actual Label"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Actual Label",
+              "nativeQueryRef": "Actual Label",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ConfusionMatrices"
+                    }
+                  },
+                  "Property": "Matrix Count"
+                }
+              },
+              "queryRef": "ConfusionMatrices.Matrix Count",
+              "nativeQueryRef": "Matrix Count"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Confusion matrix (counts)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

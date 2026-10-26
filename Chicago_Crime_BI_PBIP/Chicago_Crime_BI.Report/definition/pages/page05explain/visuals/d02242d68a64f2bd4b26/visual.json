@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "d02242d68a64f2bd4b26",
+  "position": {
+    "x": 516,
+    "y": 402,
+    "z": 6,
+    "height": 85,
+    "width": 236,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Predictions"
+                    }
+                  },
+                  "Property": "Test Precision (Arrest)"
+                }
+              },
+              "queryRef": "Predictions.Test Precision (Arrest)",
+              "nativeQueryRef": "Test Precision (Arrest)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Test precision (arrest)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

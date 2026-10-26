@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Chicago_Crime_BI"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "8c49bc55-65e9-45af-baf8-3c899f0bea1e"
+  }
+}
